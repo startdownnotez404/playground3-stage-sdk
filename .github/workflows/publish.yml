@@ -1,0 +1,29 @@
+name: Publish to npmjs
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          registry-url: "https://registry.npmjs.org"
+          scope: "@startdownnotez404"
+      # Trusted publishing needs npm >= 11.5.1 (Node 24). No NPM_TOKEN required
+      # after the package exists and GitHub Actions is the Trusted Publisher.
+      # For the first-ever publish, set repo secret NPM_TOKEN (granular token
+      # with Bypass 2FA); npm falls back to it when OIDC is not configured yet.
+      - run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

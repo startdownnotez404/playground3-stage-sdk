@@ -42,6 +42,10 @@
     "type": "git",
     "url": "git+https://github.com/startdownnotez404/playground3-stage-sdk.git"
   },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
   "license": "MIT",
   "author": "startdownnotez404"
 }

@@ -1,21 +1,18 @@
 # @startdownnotez404/playground3-stage-sdk
 
-Opaque Playground3 Stage SDK for author apps. Install from the public GitHub
-repo (no npmjs org, no GitHub Packages token):
+Opaque Playground3 Stage SDK for author apps. Source lives on GitHub;
+install the published package from the public npmjs registry:
 
 ```bash
-npm install github:startdownnotez404/playground3-stage-sdk
+npm install @startdownnotez404/playground3-stage-sdk
 ```
 
 ```ts
 import { mountPlayground3StageApp } from "@startdownnotez404/playground3-stage-sdk";
 ```
 
-`/playground3/author` installs a **pinned tag tarball** inside WebContainer:
-
-```json
-"@startdownnotez404/playground3-stage-sdk": "https://github.com/startdownnotez404/playground3-stage-sdk/archive/refs/tags/v0.1.0.tar.gz"
-```
+`/playground3/author` pins the same registry version inside WebContainer
+(`"@startdownnotez404/playground3-stage-sdk": "0.1.0"`).
 
 ## What this package is
 
@@ -33,7 +30,7 @@ treats those as externals.
 
 ## Build from the platform tree
 
-This repo commits `dist/` so GitHub installs work without the platform
+This repo commits `dist/` so npm and GitHub installs work without the platform
 checkout. To rebuild:
 
 ```bash
@@ -42,3 +39,13 @@ npm run build
 
 That shells out to `web/dev/dev-playground-authorSDK` plus `ui-lib/ui-dev`
 (FlowMap is compiled from ui-dev source, not from the published ui-lib barrel).
+
+## Publish
+
+GitHub Actions (`.github/workflows/publish.yml`) publishes on `v*` tags and
+via **Run workflow**. After the package exists on npmjs, add a Trusted
+Publisher (GitHub Actions → `startdownnotez404/playground3-stage-sdk` →
+`publish.yml` → allow `npm publish`). Later tags need no npm token.
+
+The first version still needs one Bypass-2FA granular token as repo secret
+`NPM_TOKEN`, or a local `npm publish --access public --otp=…`.
