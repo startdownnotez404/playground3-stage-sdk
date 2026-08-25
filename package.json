@@ -1,0 +1,47 @@
+{
+  "name": "@startdownnotez404/playground3-stage-sdk",
+  "version": "0.1.0",
+  "description": "Playground3 Stage SDK for author apps (mount, turn runner, whiteboard/ontology toolkits, FlowMap).",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./xyflow-style.css": "./dist/xyflow-style.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist"
+  ],
+  "sideEffects": [
+    "**/*.css",
+    "./dist/index.js"
+  ],
+  "scripts": {
+    "build": "node ./scripts/build.mjs"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "react-dom": ">=18",
+    "@mui/material": "^7",
+    "@mui/icons-material": "^7",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11"
+  },
+  "peerDependenciesMeta": {
+    "@mui/icons-material": {
+      "optional": true
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/startdownnotez404/playground3-stage-sdk.git"
+  },
+  "license": "MIT",
+  "author": "startdownnotez404"
+}
