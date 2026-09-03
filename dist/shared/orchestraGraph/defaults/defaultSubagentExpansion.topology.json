@@ -1,0 +1,73 @@
+{
+  "version": "1.0",
+  "name": "inlineExpansion",
+  "description": "Platform default topology for inlineExpansion: host bridges into the modular tool-loop shell and returns to the host when expansion completes.",
+  "models": [
+    {
+      "id": "template",
+      "provider": "playground3",
+      "model": "template",
+      "costTier": "low",
+      "strengths": ["reasoning"]
+    }
+  ],
+  "agents": {
+    "__expansionAgent__": {
+      "modelId": "template",
+      "reasoning": false,
+      "description": "Platform template agent for subagent-expansion map cards (replaced per host agentIds).",
+      "agentPersona": "Template only — expansion cards use the host graph agent catalog."
+    }
+  },
+  "graph": {
+    "nodes": [
+      {
+        "id": "__host__",
+        "agentId": "__expansionAgent__",
+        "nodeType": "execute",
+        "outcomes": ["expand", "done"],
+        "task": {
+          "goal": "Host placeholder — replaced by the calling graph node at map build time.",
+          "tools": [],
+          "skills": []
+        }
+      },
+      {
+        "id": "__expansionTemplate__",
+        "agentId": "__expansionAgent__",
+        "nodeType": "execute",
+        "outcomes": ["return", "done"],
+        "task": {
+          "goal": "Run as an allowlisted expansion subagent under the host node.",
+          "tools": [],
+          "skills": []
+        }
+      }
+    ],
+    "edges": [
+      {
+        "from": "__host__",
+        "to": "__expansionTemplate__",
+        "outcome": "expand"
+      },
+      {
+        "from": "__expansionTemplate__",
+        "to": "__host__",
+        "outcome": "return",
+        "maxIterations": 1
+      }
+    ],
+    "groups": [],
+    "parallel": []
+  },
+  "initialCheckpoint": {},
+  "tools": [],
+  "runtime": {
+    "maxTurns": 1,
+    "turnTimeout": 30000,
+    "defaultOutcome": "done"
+  },
+  "workflow": {
+    "profile": "strict"
+  }
+}

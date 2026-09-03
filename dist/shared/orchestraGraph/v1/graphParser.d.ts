@@ -1,0 +1,13 @@
+import type { OrchestraGraph, OrchestraGraphContextLaneRegistry, OrchestraGraphEdge, OrchestraGraphGroup, OrchestraGraphGroupEdge, OrchestraGraphNodeApproval, OrchestraGraphNodeRetrieval, OrchestraGraphNodeTaskContract, OrchestraGraphSubagentTopologyBinding, OrchestraGraphNodeToolCallPolicy, OrchestraGraphPromptInjection } from "../../orchestraGraphConfig";
+export declare const parseContextLaneRef: (value: unknown, path: string) => string | undefined;
+export declare const parseContextLanes: (value: unknown) => OrchestraGraphContextLaneRegistry | undefined;
+export declare const parseNodeToolCallPolicy: (value: unknown, path: string) => OrchestraGraphNodeToolCallPolicy | undefined;
+export declare const parseNodeTaskContract: (value: unknown, path: string) => OrchestraGraphNodeTaskContract | undefined;
+export declare const parsePromptInjections: (value: unknown, path: string) => OrchestraGraphPromptInjection[] | undefined;
+export declare const parseNodeApproval: (value: unknown, path: string) => OrchestraGraphNodeApproval | undefined;
+export declare const parseSubagentTopologies: (value: unknown, path: string) => OrchestraGraphSubagentTopologyBinding[] | undefined;
+export declare const parseNodeRetrieval: (value: unknown, path: string) => OrchestraGraphNodeRetrieval | undefined;
+export declare const parseEdge: (value: unknown, index: number) => OrchestraGraphEdge;
+export declare const parseGroup: (value: unknown, index: number) => OrchestraGraphGroup;
+export declare const parseGroupEdge: (value: unknown, index: number) => OrchestraGraphGroupEdge;
+export declare const parseGraph: (value: unknown) => OrchestraGraph;

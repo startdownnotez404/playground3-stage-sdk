@@ -1,6 +1,6 @@
 {
   "name": "@startdownnotez404/playground3-stage-sdk",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Playground3 Stage SDK for author apps (mount, turn runner, whiteboard/ontology toolkits, FlowMap).",
   "type": "module",
   "main": "./dist/index.js",
@@ -25,16 +25,34 @@
   "scripts": {
     "build": "node ./scripts/build.mjs"
   },
+  "devDependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/icons-material": "^7.3.9",
+    "@mui/material": "^7.3.9",
+    "@types/node": "^22.13.10",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@xyflow/react": "^12.6.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.8.2",
+    "zod": "^4.4.3"
+  },
   "peerDependencies": {
     "react": ">=18",
     "react-dom": ">=18",
     "@mui/material": "^7",
     "@mui/icons-material": "^7",
     "@emotion/react": "^11",
-    "@emotion/styled": "^11"
+    "@emotion/styled": "^11",
+    "@xyflow/react": "^12"
   },
   "peerDependenciesMeta": {
     "@mui/icons-material": {
+      "optional": true
+    },
+    "@xyflow/react": {
       "optional": true
     }
   },

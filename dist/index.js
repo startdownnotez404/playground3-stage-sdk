@@ -123272,8 +123272,7 @@ var mountPlayground3StageApp = (input) => {
 };
 
 // src/features/playground3/runtime/stage/sdk/shims/contextWindow.ts
-var serializePlayground2ContextWindowBreakdown = (value) => JSON.stringify(value ?? {});
-var serializePlayground3ContextWindowBreakdown = serializePlayground2ContextWindowBreakdown;
+var serializePlayground3ContextWindowBreakdown = (value) => JSON.stringify(value ?? {});
 
 // src/features/playground3/runtime/stage/sdk/shims/playground3ContextWindow.ts
 var buildPlayground3InferenceContextWindow = (input) => ({
@@ -135779,6 +135778,8 @@ var useFlowMapFitView = ({
 
 // ../../../ui-lib/ui-dev/src/components/elemental/Box/src/index.ts
 import { default as default4 } from "@mui/material/Box";
+import { default as default143 } from "@mui/material/Stack";
+import { default as default144 } from "@mui/material/Grid";
 
 // ../../../ui-lib/ui-dev/src/components/compound/FlowMap/StyleWrapper.tsx
 import { jsx as jsx14 } from "react/jsx-runtime";
@@ -135837,7 +135838,7 @@ var StyleWrapper = ({ children: children2, className, colors }) => {
 import { memo as memo3 } from "react";
 
 // ../../../ui-lib/ui-dev/src/components/elemental/Typography/src/Typography.ts
-import { default as default143 } from "@mui/material/Typography";
+import { default as default145 } from "@mui/material/Typography";
 
 // ../../../ui-lib/ui-dev/src/components/compound/FlowMap/components/FlowMapHandle.tsx
 import { jsx as jsx15 } from "react/jsx-runtime";
@@ -136001,7 +136002,7 @@ var DefaultNode2 = ({ data, selected: selected2 }) => {
                   width: "-webkit-fill-available",
                   padding: "10px"
                 },
-                children: /* @__PURE__ */ jsx17(default143, { variant: "body2", sx: { fontWeight: "bold", textAlign: "center" }, children: String(data.label ?? "") })
+                children: /* @__PURE__ */ jsx17(default145, { variant: "body2", sx: { fontWeight: "bold", textAlign: "center" }, children: String(data.label ?? "") })
               }
             )
           }
@@ -136020,7 +136021,7 @@ import { forwardRef as forwardRef7 } from "react";
 import MuiIconButton2 from "@mui/material/IconButton";
 
 // ../../../ui-lib/ui-dev/src/components/elemental/Tooltip/src/Tooltip/index.ts
-import { default as default144 } from "@mui/material/Tooltip";
+import { default as default146 } from "@mui/material/Tooltip";
 
 // ../../../ui-lib/ui-dev/src/components/elemental/Button/src/IconButton/IconButton.tsx
 import { jsx as jsx18 } from "react/jsx-runtime";
@@ -136035,7 +136036,7 @@ var IconButton2 = forwardRef7(({
   ...props
 }, ref) => {
   return /* @__PURE__ */ jsx18(
-    default144,
+    default146,
     {
       title,
       slotProps: {
@@ -136063,135 +136064,152 @@ var IconButton2 = forwardRef7(({
 var IconButton_default2 = IconButton2;
 
 // ../../../ui-lib/ui-dev/src/components/Icons/MuiIcon/index.ts
-import { default as default145 } from "@mui/icons-material/ArrowRightAlt";
-import { default as default146 } from "@mui/icons-material/DescriptionOutlined";
-import { default as default147 } from "@mui/icons-material/Description";
-import { default as default148 } from "@mui/icons-material/PictureAsPdf";
-import { default as default149 } from "@mui/icons-material/AudioFile";
-import { default as default150 } from "@mui/icons-material/VideoFile";
-import { default as default151 } from "@mui/icons-material/TableChart";
-import { default as default152 } from "@mui/icons-material/FolderZip";
-import { default as default153 } from "@mui/icons-material/InsertDriveFile";
-import { default as default154 } from "@mui/icons-material/ImageOutlined";
-import { default as default155 } from "@mui/icons-material/LayersOutlined";
-import { default as default156 } from "@mui/icons-material/TextFormat";
-import { default as default157 } from "@mui/icons-material/Remove";
-import { default as default158 } from "@mui/icons-material/PostAdd";
-import { default as default159 } from "@mui/icons-material/ErrorOutline";
-import { default as default160 } from "@mui/icons-material/QuestionMarkOutlined";
-import { default as default161 } from "@mui/icons-material/MeetingRoomOutlined";
-import { default as default162 } from "@mui/icons-material/PlaylistRemove";
-import { default as default163 } from "@mui/icons-material/ChecklistRtl";
-import { default as default164 } from "@mui/icons-material/HideImageOutlined";
-import { default as default165 } from "@mui/icons-material/RemoveRedEyeTwoTone";
-import { default as default166 } from "@mui/icons-material/PhotoSizeSelectLarge";
-import { default as default167 } from "@mui/icons-material/LockPersonOutlined";
-import { default as default168 } from "@mui/icons-material/Person";
-import { default as default169 } from "@mui/icons-material/InsertEmoticon";
-import { default as default170 } from "@mui/icons-material/RemoveDoneOutlined";
-import { default as default171 } from "@mui/icons-material/Tag";
-import { default as default172 } from "@mui/icons-material/Audiotrack";
-import { default as default173 } from "@mui/icons-material/Videocam";
-import { default as default174 } from "@mui/icons-material/Code";
-import { default as default175 } from "@mui/icons-material/Equalizer";
-import { default as default176 } from "@mui/icons-material/PivotTableChart";
-import { default as default177 } from "@mui/icons-material/Search";
-import { default as default178 } from "@mui/icons-material/DataObject";
-import { default as default179 } from "@mui/icons-material/SortByAlpha";
-import { default as default180 } from "@mui/icons-material/ThumbUp";
-import { default as default181 } from "@mui/icons-material/AttachMoneyOutlined";
-import { default as default182 } from "@mui/icons-material/Storage";
-import { default as default183 } from "@mui/icons-material/WorkspacePremium";
-import { default as default184 } from "@mui/icons-material/Numbers";
-import { default as default185 } from "@mui/icons-material/Functions";
-import { default as default186 } from "@mui/icons-material/Lightbulb";
-import { default as default187 } from "@mui/icons-material/CropRotate";
-import { default as default188 } from "@mui/icons-material/PhotoSizeSelectLarge";
-import { default as default189 } from "@mui/icons-material/CollectionsBookmark";
-import { default as default190 } from "@mui/icons-material/Schedule";
-import { default as default191 } from "@mui/icons-material/Style";
-import { default as default192 } from "@mui/icons-material/Crop169";
-import { default as default193 } from "@mui/icons-material/CropSquare";
-import { default as default194 } from "@mui/icons-material/GraphicEqRounded";
-import { default as default195 } from "@mui/icons-material/MemoryRounded";
-import { default as default196 } from "@mui/icons-material/AddCircleOutlineRounded";
-import { default as default197 } from "@mui/icons-material/Add";
-import { default as default198 } from "@mui/icons-material/Close";
-import { default as default199 } from "@mui/icons-material/ExpandMore";
-import { default as default200 } from "@mui/icons-material/Autorenew";
-import { default as default201 } from "@mui/icons-material/CheckCircle";
-import { default as default202 } from "@mui/icons-material/Menu";
-import { default as default203 } from "@mui/icons-material/MoreVert";
-import { default as default204 } from "@mui/icons-material/MoreHoriz";
-import { default as default205 } from "@mui/icons-material/ContentCopy";
-import { default as default206 } from "@mui/icons-material/ContentPaste";
-import { default as default207 } from "@mui/icons-material/Cloud";
-import { default as default208 } from "@mui/icons-material/DownloadOutlined";
-import { default as default209 } from "@mui/icons-material/DownloadDoneOutlined";
-import { default as default210 } from "@mui/icons-material/StarBorderOutlined";
-import { default as default211 } from "@mui/icons-material/DeleteForever";
-import { default as default212 } from "@mui/icons-material/LayersClear";
-import { default as default213 } from "@mui/icons-material/Check";
-import { default as default214 } from "@mui/icons-material/DoneAll";
-import { default as default215 } from "@mui/icons-material/PowerSettingsNew";
-import { default as default216 } from "@mui/icons-material/Send";
-import { default as default217 } from "@mui/icons-material/ZoomInMap";
-import { default as default218 } from "@mui/icons-material/ZoomOutMap";
-import { default as default219 } from "@mui/icons-material/HomeRepairService";
-import { default as default220 } from "@mui/icons-material/Construction";
-import { default as default221 } from "@mui/icons-material/Help";
-import { default as default223 } from "@mui/icons-material/EmojiFlags";
-import { default as default224 } from "@mui/icons-material/Edit";
-import { default as default225 } from "@mui/icons-material/ForkRight";
-import { default as default226 } from "@mui/icons-material/Settings";
-import { default as default227 } from "@mui/icons-material/Restore";
-import { default as default228 } from "@mui/icons-material/EditNote";
-import { default as default229 } from "@mui/icons-material/HomeOutlined";
-import { default as default230 } from "@mui/icons-material/ExitToAppOutlined";
-import { default as default231 } from "@mui/icons-material/WbSunnyOutlined";
-import { default as default232 } from "@mui/icons-material/DarkModeOutlined";
-import { default as default233 } from "@mui/icons-material/AttachFileOutlined";
-import { default as default234 } from "@mui/icons-material/NoteAdd";
-import { default as default235 } from "@mui/icons-material/CloudUpload";
-import { default as default236 } from "@mui/icons-material/KeyboardDoubleArrowRight";
-import { default as default237 } from "@mui/icons-material/KeyboardDoubleArrowLeft";
-import { default as default238 } from "@mui/icons-material/KeyboardDoubleArrowRightRounded";
-import { default as default239 } from "@mui/icons-material/FitScreen";
-import { default as default240 } from "@mui/icons-material/Fullscreen";
-import { default as default241 } from "@mui/icons-material/Biotech";
-import { default as default242 } from "@mui/icons-material/Share";
-import { default as default243 } from "@mui/icons-material/FilterAlt";
-import { default as default244 } from "@mui/icons-material/Sync";
-import { default as default245 } from "@mui/icons-material/PlayArrow";
-import { default as default246 } from "@mui/icons-material/PauseOutlined";
-import { default as default247 } from "@mui/icons-material/Casino";
-import { default as default248 } from "@mui/icons-material/Paid";
-import { default as default249 } from "@mui/icons-material/Save";
-import { default as default250 } from "@mui/icons-material/StopRounded";
-import { default as default251 } from "@mui/icons-material/Replay";
-import { default as default252 } from "@mui/icons-material/AccountTree";
-import { default as default253 } from "@mui/icons-material/Close";
-import { default as default254 } from "@mui/icons-material/KeyboardArrowDown";
-import { default as default255 } from "@mui/icons-material/KeyboardArrowRight";
-import { default as default256 } from "@mui/icons-material/SearchRounded";
-import { default as default257 } from "@mui/icons-material/CloseRounded";
-import { default as default258 } from "@mui/icons-material/SortByAlphaRounded";
-import { default as default259 } from "@mui/icons-material/FilterAltOutlined";
-import { default as default260 } from "@mui/icons-material/ClearRounded";
-import { default as default261 } from "@mui/icons-material/ArrowDropDownRounded";
-import { default as default262 } from "@mui/icons-material/AccountBox";
-import { default as default263 } from "@mui/icons-material/Logout";
-import { default as default264 } from "@mui/icons-material/Login";
-import { default as default265 } from "@mui/icons-material/Dashboard";
-import { default as default266 } from "@mui/icons-material/AccountTreeOutlined";
-import { default as default267 } from "@mui/icons-material/HelpOutline";
-import { default as default268 } from "@mui/icons-material/NavigateBefore";
-import { default as default269 } from "@mui/icons-material/NavigateNext";
-import { default as default270 } from "@mui/icons-material/Person";
-import { default as default271 } from "@mui/icons-material/CalendarToday";
-import { default as default272 } from "@mui/icons-material/QuestionAnswerOutlined";
-import { default as default273 } from "@mui/icons-material/Today";
-import { default as default274 } from "@mui/icons-material/DeleteForever";
+import { default as default147 } from "@mui/icons-material/ArrowRightAlt";
+import { default as default148 } from "@mui/icons-material/DescriptionOutlined";
+import { default as default149 } from "@mui/icons-material/Description";
+import { default as default150 } from "@mui/icons-material/PictureAsPdf";
+import { default as default151 } from "@mui/icons-material/AudioFile";
+import { default as default152 } from "@mui/icons-material/VideoFile";
+import { default as default153 } from "@mui/icons-material/TableChart";
+import { default as default154 } from "@mui/icons-material/FolderZip";
+import { default as default155 } from "@mui/icons-material/InsertDriveFile";
+import { default as default156 } from "@mui/icons-material/ImageOutlined";
+import { default as default157 } from "@mui/icons-material/LayersOutlined";
+import { default as default158 } from "@mui/icons-material/TextFormat";
+import { default as default159 } from "@mui/icons-material/Remove";
+import { default as default160 } from "@mui/icons-material/PostAdd";
+import { default as default161 } from "@mui/icons-material/ErrorOutline";
+import { default as default162 } from "@mui/icons-material/QuestionMarkOutlined";
+import { default as default163 } from "@mui/icons-material/MeetingRoomOutlined";
+import { default as default164 } from "@mui/icons-material/PlaylistRemove";
+import { default as default165 } from "@mui/icons-material/ChecklistRtl";
+import { default as default166 } from "@mui/icons-material/HideImageOutlined";
+import { default as default167 } from "@mui/icons-material/RemoveRedEyeTwoTone";
+import { default as default168 } from "@mui/icons-material/PhotoSizeSelectLarge";
+import { default as default169 } from "@mui/icons-material/LockPersonOutlined";
+import { default as default170 } from "@mui/icons-material/Person";
+import { default as default171 } from "@mui/icons-material/InsertEmoticon";
+import { default as default172 } from "@mui/icons-material/RemoveDoneOutlined";
+import { default as default173 } from "@mui/icons-material/Tag";
+import { default as default174 } from "@mui/icons-material/Audiotrack";
+import { default as default175 } from "@mui/icons-material/Videocam";
+import { default as default176 } from "@mui/icons-material/Code";
+import { default as default177 } from "@mui/icons-material/Equalizer";
+import { default as default178 } from "@mui/icons-material/PivotTableChart";
+import { default as default179 } from "@mui/icons-material/Search";
+import { default as default180 } from "@mui/icons-material/DataObject";
+import { default as default181 } from "@mui/icons-material/SortByAlpha";
+import { default as default182 } from "@mui/icons-material/ThumbUp";
+import { default as default183 } from "@mui/icons-material/AttachMoneyOutlined";
+import { default as default184 } from "@mui/icons-material/Storage";
+import { default as default185 } from "@mui/icons-material/WorkspacePremium";
+import { default as default186 } from "@mui/icons-material/Numbers";
+import { default as default187 } from "@mui/icons-material/Functions";
+import { default as default188 } from "@mui/icons-material/Lightbulb";
+import { default as default189 } from "@mui/icons-material/CropRotate";
+import { default as default190 } from "@mui/icons-material/PhotoSizeSelectLarge";
+import { default as default191 } from "@mui/icons-material/CollectionsBookmark";
+import { default as default192 } from "@mui/icons-material/Schedule";
+import { default as default193 } from "@mui/icons-material/Style";
+import { default as default194 } from "@mui/icons-material/Crop169";
+import { default as default195 } from "@mui/icons-material/CropSquare";
+import { default as default196 } from "@mui/icons-material/GraphicEqRounded";
+import { default as default197 } from "@mui/icons-material/MemoryRounded";
+import { default as default198 } from "@mui/icons-material/AddCircleOutlineRounded";
+import { default as default199 } from "@mui/icons-material/Add";
+import { default as default200 } from "@mui/icons-material/Close";
+import { default as default201 } from "@mui/icons-material/ExpandMore";
+import { default as default202 } from "@mui/icons-material/Autorenew";
+import { default as default203 } from "@mui/icons-material/CheckCircle";
+import { default as default204 } from "@mui/icons-material/Menu";
+import { default as default205 } from "@mui/icons-material/MoreVert";
+import { default as default206 } from "@mui/icons-material/MoreHoriz";
+import { default as default207 } from "@mui/icons-material/ContentCopy";
+import { default as default208 } from "@mui/icons-material/ContentPaste";
+import { default as default209 } from "@mui/icons-material/Cloud";
+import { default as default210 } from "@mui/icons-material/DownloadOutlined";
+import { default as default211 } from "@mui/icons-material/DownloadDoneOutlined";
+import { default as default212 } from "@mui/icons-material/StarBorderOutlined";
+import { default as default213 } from "@mui/icons-material/DeleteForever";
+import { default as default214 } from "@mui/icons-material/LayersClear";
+import { default as default215 } from "@mui/icons-material/Check";
+import { default as default216 } from "@mui/icons-material/DoneAll";
+import { default as default217 } from "@mui/icons-material/PowerSettingsNew";
+import { default as default218 } from "@mui/icons-material/Send";
+import { default as default219 } from "@mui/icons-material/ZoomInMap";
+import { default as default220 } from "@mui/icons-material/ZoomOutMap";
+import { default as default221 } from "@mui/icons-material/HomeRepairService";
+import { default as default223 } from "@mui/icons-material/Construction";
+import { default as default224 } from "@mui/icons-material/Help";
+import { default as default225 } from "@mui/icons-material/EmojiFlags";
+import { default as default226 } from "@mui/icons-material/Edit";
+import { default as default227 } from "@mui/icons-material/ForkRight";
+import { default as default228 } from "@mui/icons-material/Settings";
+import { default as default229 } from "@mui/icons-material/Restore";
+import { default as default230 } from "@mui/icons-material/EditNote";
+import { default as default231 } from "@mui/icons-material/HomeOutlined";
+import { default as default232 } from "@mui/icons-material/ExitToAppOutlined";
+import { default as default233 } from "@mui/icons-material/WbSunnyOutlined";
+import { default as default234 } from "@mui/icons-material/DarkModeOutlined";
+import { default as default235 } from "@mui/icons-material/AttachFileOutlined";
+import { default as default236 } from "@mui/icons-material/NoteAdd";
+import { default as default237 } from "@mui/icons-material/CloudUpload";
+import { default as default238 } from "@mui/icons-material/KeyboardDoubleArrowRight";
+import { default as default239 } from "@mui/icons-material/KeyboardDoubleArrowLeft";
+import { default as default240 } from "@mui/icons-material/KeyboardDoubleArrowRightRounded";
+import { default as default241 } from "@mui/icons-material/FitScreen";
+import { default as default242 } from "@mui/icons-material/Fullscreen";
+import { default as default243 } from "@mui/icons-material/Biotech";
+import { default as default244 } from "@mui/icons-material/Share";
+import { default as default245 } from "@mui/icons-material/FilterAlt";
+import { default as default246 } from "@mui/icons-material/Sync";
+import { default as default247 } from "@mui/icons-material/PlayArrow";
+import { default as default248 } from "@mui/icons-material/PauseOutlined";
+import { default as default249 } from "@mui/icons-material/Casino";
+import { default as default250 } from "@mui/icons-material/Paid";
+import { default as default251 } from "@mui/icons-material/Save";
+import { default as default252 } from "@mui/icons-material/StopRounded";
+import { default as default253 } from "@mui/icons-material/Replay";
+import { default as default254 } from "@mui/icons-material/AccountTree";
+import { default as default255 } from "@mui/icons-material/Close";
+import { default as default256 } from "@mui/icons-material/KeyboardArrowDown";
+import { default as default257 } from "@mui/icons-material/KeyboardArrowRight";
+import { default as default258 } from "@mui/icons-material/SearchRounded";
+import { default as default259 } from "@mui/icons-material/CloseRounded";
+import { default as default260 } from "@mui/icons-material/SortByAlphaRounded";
+import { default as default261 } from "@mui/icons-material/FilterAltOutlined";
+import { default as default262 } from "@mui/icons-material/InboxOutlined";
+import { default as default263 } from "@mui/icons-material/SearchOff";
+import { default as default264 } from "@mui/icons-material/ClearRounded";
+import { default as default265 } from "@mui/icons-material/ArrowDropDownRounded";
+import { default as default266 } from "@mui/icons-material/AccountBox";
+import { default as default267 } from "@mui/icons-material/Logout";
+import { default as default268 } from "@mui/icons-material/Login";
+import { default as default269 } from "@mui/icons-material/Dashboard";
+import { default as default270 } from "@mui/icons-material/AccountTreeOutlined";
+import { default as default271 } from "@mui/icons-material/HelpOutline";
+import { default as default272 } from "@mui/icons-material/NavigateBefore";
+import { default as default273 } from "@mui/icons-material/NavigateNext";
+import { default as default274 } from "@mui/icons-material/Person";
+import { default as default275 } from "@mui/icons-material/CalendarToday";
+import { default as default276 } from "@mui/icons-material/QuestionAnswerOutlined";
+import { default as default277 } from "@mui/icons-material/Today";
+import { default as default278 } from "@mui/icons-material/DeleteForever";
+import { default as default279 } from "@mui/icons-material/AdsClick";
+import { default as default280 } from "@mui/icons-material/Fingerprint";
+import { default as default281 } from "@mui/icons-material/SportsEsportsOutlined";
+import { default as default282 } from "@mui/icons-material/HelpOutlineRounded";
+import { default as default283 } from "@mui/icons-material/AccountTreeOutlined";
+import { default as default284 } from "@mui/icons-material/SmartToyOutlined";
+import { default as default285 } from "@mui/icons-material/AcUnit";
+import { default as default286 } from "@mui/icons-material/Loop";
+import { default as default287 } from "@mui/icons-material/Pending";
+import { default as default288 } from "@mui/icons-material/AllInclusive";
+import { default as default289 } from "@mui/icons-material/WarningOutlined";
+import { default as default290 } from "@mui/icons-material/InfoOutlined";
+import { default as default291 } from "@mui/icons-material/AutoAwesomeRounded";
+import { default as default292 } from "@mui/icons-material/ErrorOutlineOutlined";
+import { default as default293 } from "@mui/icons-material/Download";
 
 // ../../../ui-lib/ui-dev/src/components/compound/FlowMap/FlowMapCollapseContext.tsx
 import {
@@ -136336,7 +136354,7 @@ var DefaultGroupToggle = ({
         background: "color-mix(in srgb, var(--flow-node-bg) 90%, transparent)"
       }
     },
-    children: collapsed ? /* @__PURE__ */ jsx20(default255, { fontSize: "small" }) : /* @__PURE__ */ jsx20(default254, { fontSize: "small" })
+    children: collapsed ? /* @__PURE__ */ jsx20(default257, { fontSize: "small" }) : /* @__PURE__ */ jsx20(default256, { fontSize: "small" })
   }
 );
 var GroupNode2 = ({ id: id2, data, selected: selected2 }) => {
@@ -136419,7 +136437,7 @@ var GroupNode2 = ({ id: id2, data, selected: selected2 }) => {
                 },
                 children: [
                   /* @__PURE__ */ jsx20(
-                    default143,
+                    default145,
                     {
                       variant: "caption",
                       sx: {
@@ -136432,7 +136450,7 @@ var GroupNode2 = ({ id: id2, data, selected: selected2 }) => {
                     }
                   ),
                   !collapsed && description ? /* @__PURE__ */ jsx20(
-                    default143,
+                    default145,
                     {
                       variant: "caption",
                       sx: {
@@ -136443,7 +136461,7 @@ var GroupNode2 = ({ id: id2, data, selected: selected2 }) => {
                     }
                   ) : null,
                   resolvedDescendantCount ? /* @__PURE__ */ jsx20(
-                    default143,
+                    default145,
                     {
                       variant: "caption",
                       sx: {
@@ -137828,7 +137846,7 @@ function FlowMapExportControls({
         onClick: () => {
           void handleDownload();
         },
-        children: /* @__PURE__ */ jsx23(default208, { sx: { fontSize: 16 } })
+        children: /* @__PURE__ */ jsx23(default210, { sx: { fontSize: 16 } })
       }
     ),
     /* @__PURE__ */ jsx23(
@@ -137840,7 +137858,7 @@ function FlowMapExportControls({
         onClick: () => {
           void handleCopyMermaid();
         },
-        children: /* @__PURE__ */ jsx23(default205, { sx: { fontSize: 16 } })
+        children: /* @__PURE__ */ jsx23(default207, { sx: { fontSize: 16 } })
       }
     )
   ] });
@@ -137857,6 +137875,8 @@ var edgeTypes = {
 
 // ../../../ui-lib/ui-dev/src/components/compound/FlowMap/FlowMap.tsx
 import { Fragment as Fragment5, jsx as jsx24, jsxs as jsxs9 } from "react/jsx-runtime";
+var EMPTY_FLOW_MAP_NODES = [];
+var EMPTY_FLOW_MAP_EDGES = [];
 var groupHandleBaseStyle = {
   background: "transparent",
   width: 0,
@@ -137984,8 +138004,8 @@ var FlowMapContent = ({
   const [internalNodes, setInternalNodes, onInternalNodesChange] = useNodesState([]);
   const [internalEdges, setInternalEdges, onInternalEdgesChange] = useEdgesState([]);
   const isTreeMode = !!tree;
-  const nodes = isTreeMode ? internalNodes : propsNodes || [];
-  const edges = isTreeMode ? internalEdges : propsEdges || [];
+  const nodes = isTreeMode ? internalNodes : propsNodes || EMPTY_FLOW_MAP_NODES;
+  const edges = isTreeMode ? internalEdges : propsEdges || EMPTY_FLOW_MAP_EDGES;
   const onNodesChange = isTreeMode ? onInternalNodesChange : propsOnNodesChange;
   const onEdgesChange = isTreeMode ? onInternalEdgesChange : propsOnEdgesChange;
   const [internalCollapsedGroups, setInternalCollapsedGroups] = useState8({});
@@ -138312,7 +138332,6 @@ var FlowMapContent = ({
       "custom-node": slots.defaultNode,
       default: slots.defaultNode
     } : {},
-    ...slots?.groupNode ? {} : {},
     [FLOW_MAP_GROUP_NODE_TYPE]: groupNodeRenderer,
     group: groupNodeRenderer
   }), [nodeTypes2, slots?.defaultNode, groupNodeRenderer]);
