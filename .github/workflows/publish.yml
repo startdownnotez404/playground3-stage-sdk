@@ -1,3 +1,9 @@
+# Publish an installable GitHub Release tarball. No npm publish.
+#
+# Design: this workflow lives here so GITHUB_TOKEN can create Releases on
+# this public repo. The job builds FROM a checkout of private
+# startdownnotez404/monorepo (read token required). A monorepo-hosted
+# workflow that uploaded here would need a write token on this repo instead.
 name: Publish GitHub Release
 
 on:
@@ -7,6 +13,15 @@ on:
         description: Existing v* git tag to attach the tarball to (e.g. v0.1.3)
         required: true
         type: string
+      monorepo_ref:
+        description: >-
+          Optional startdownnotez404/monorepo ref (branch, tag, or SHA).
+          Leave empty for that repo's default branch. Only set this to a ref
+          you have verified exists and defines build:stage-sdk. Do not paste
+          a stale cloud-agent branch name.
+        required: false
+        type: string
+        default: ""
   push:
     tags:
       - "v*"
@@ -14,8 +29,13 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: publish-release-${{ github.event.inputs.tag || github.ref }}
+  cancel-in-progress: false
+
 jobs:
   publish:
+    if: github.repository == 'startdownnotez404/playground3-stage-sdk'
     runs-on: ubuntu-latest
     steps:
       - name: Resolve tag
@@ -35,25 +55,134 @@ jobs:
           esac
           echo "tag=$TAG" >> "$GITHUB_OUTPUT"
 
-      - uses: actions/checkout@v4
-        with:
-          ref: ${{ steps.meta.outputs.tag }}
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: "24"
-
-      - name: Require slim host-ui chunk
+      - name: Require MONOREPO_READ_TOKEN
+        env:
+          MONOREPO_READ_TOKEN: ${{ secrets.MONOREPO_READ_TOKEN }}
         run: |
-          if [ ! -f dist/host-ui.js ]; then
-            echo "dist/host-ui.js is missing. The host build must write it before tagging."
-            echo "Do not ship a tarball that cannot resolve ./host-ui."
+          if [ -z "$MONOREPO_READ_TOKEN" ]; then
+            cat <<'EOF'
+          Repository secret MONOREPO_READ_TOKEN is not set.
+
+          This job checks out private startdownnotez404/monorepo and runs
+          `npm run build:stage-sdk` with PLAYGROUND3_SDK_PACKAGE_ROOT pointed
+          at this package. GITHUB_TOKEN cannot read that repo.
+
+          Create a fine-grained PAT (or GitHub App installation token) with
+          Contents: Read on:
+            - startdownnotez404/monorepo  (required)
+            - startdownnotez404/ui        (optional; real host-ui widgets)
+
+          Then: this repo → Settings → Secrets and variables → Actions →
+          New repository secret → name MONOREPO_READ_TOKEN.
+
+          Do not add an npmjs token. This workflow never runs npm publish.
+          EOF
             exit 1
           fi
 
+      - name: Resolve monorepo ref
+        id: monorepo
+        env:
+          GH_TOKEN: ${{ secrets.MONOREPO_READ_TOKEN }}
+          REQUESTED_REF: ${{ github.event.inputs.monorepo_ref }}
+        run: |
+          set -euo pipefail
+          if ! gh api repos/startdownnotez404/monorepo --jq .full_name >/dev/null; then
+            cat <<'EOF'
+          MONOREPO_READ_TOKEN cannot read startdownnotez404/monorepo (HTTP error above).
+
+          The token must be a PAT or GitHub App token with Contents: Read on
+          that private repository. GITHUB_TOKEN from this public repo is not
+          enough. After granting access, re-run this workflow.
+          EOF
+            exit 1
+          fi
+          DEFAULT_BRANCH="$(gh api repos/startdownnotez404/monorepo --jq .default_branch)"
+          REF="$(printf '%s' "${REQUESTED_REF:-}" | tr -d '[:space:]')"
+          if [ -z "$REF" ]; then
+            REF="$DEFAULT_BRANCH"
+            echo "Using monorepo default branch: $REF"
+          else
+            echo "Using workflow input monorepo_ref: $REF"
+          fi
+          echo "ref=$REF" >> "$GITHUB_OUTPUT"
+          echo "default_branch=$DEFAULT_BRANCH" >> "$GITHUB_OUTPUT"
+
+      # Workflow revision (master on Run workflow; tagged commit on v* push).
+      # Helper scripts live here so filling an older tag (v0.1.3) still works.
+      - uses: actions/checkout@v4
+
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.meta.outputs.tag }}
+          path: playground3-stage-sdk
+
+      - uses: actions/checkout@v4
+        with:
+          repository: startdownnotez404/monorepo
+          token: ${{ secrets.MONOREPO_READ_TOKEN }}
+          ref: ${{ steps.monorepo.outputs.ref }}
+          path: monorepo
+          persist-credentials: false
+
+      - name: Probe startdownnotez404/ui
+        id: ui
+        env:
+          GH_TOKEN: ${{ secrets.MONOREPO_READ_TOKEN }}
+        run: |
+          if gh api repos/startdownnotez404/ui --jq .default_branch >/dev/null 2>&1; then
+            echo "available=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "available=false" >> "$GITHUB_OUTPUT"
+            echo "startdownnotez404/ui is not readable with MONOREPO_READ_TOKEN."
+            echo "Continuing without it; the host build may fall back to in-repo @/ele."
+          fi
+
+      - uses: actions/checkout@v4
+        if: steps.ui.outputs.available == 'true'
+        with:
+          repository: startdownnotez404/ui
+          token: ${{ secrets.MONOREPO_READ_TOKEN }}
+          path: ui
+          persist-credentials: false
+
+      - name: Resolve Node version
+        id: node
+        run: |
+          if [ -f monorepo/.nvmrc ]; then
+            echo "version=$(tr -d 'v \r\n' < monorepo/.nvmrc)" >> "$GITHUB_OUTPUT"
+          elif [ -f monorepo/package.json ] && jq -e '.engines.node' monorepo/package.json >/dev/null; then
+            echo "version=$(jq -r '.engines.node' monorepo/package.json | grep -oE '[0-9]+' | head -n1)" >> "$GITHUB_OUTPUT"
+          else
+            echo "version=24" >> "$GITHUB_OUTPUT"
+          fi
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ steps.node.outputs.version }}
+
+      - name: Build Stage SDK from monorepo
+        env:
+          SDK_ROOT: ${{ github.workspace }}/playground3-stage-sdk
+          MONOREPO_ROOT: ${{ github.workspace }}/monorepo
+          MONOREPO_REF: ${{ steps.monorepo.outputs.ref }}
+          PLAYGROUND3_SDK_PACKAGE_ROOT: ${{ github.workspace }}/playground3-stage-sdk
+          UI_AVAILABLE: ${{ steps.ui.outputs.available }}
+        run: |
+          if [ "$UI_AVAILABLE" = "true" ]; then
+            export UI_ROOT="${GITHUB_WORKSPACE}/ui"
+          fi
+          bash .github/scripts/build-from-monorepo.sh
+
       - name: Pack tarball
         id: pack
+        working-directory: playground3-stage-sdk
         run: |
+          if [ ! -s dist/host-ui.js ]; then
+            echo "dist/host-ui.js is missing after the monorepo build."
+            echo "Do not ship a tarball that cannot resolve ./host-ui."
+            exit 1
+          fi
           TGZ="$(npm pack | tail -n1)"
           test -f "$TGZ"
           if ! tar -tzf "$TGZ" | grep -qx 'package/dist/host-ui.js'; then
@@ -62,16 +191,21 @@ jobs:
           fi
           echo "tgz=$TGZ" >> "$GITHUB_OUTPUT"
 
-      - name: Create GitHub Release
+      - name: Create or update GitHub Release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           TAG="${{ steps.meta.outputs.tag }}"
-          TGZ="${{ steps.pack.outputs.tgz }}"
+          TGZ="playground3-stage-sdk/${{ steps.pack.outputs.tgz }}"
+          HOST_UI="playground3-stage-sdk/dist/host-ui.js"
+          MONO_SHA="$(git -C monorepo rev-parse HEAD)"
+          echo "Uploading $TGZ and $HOST_UI to $TAG (monorepo $MONO_SHA)"
           if gh release view "$TAG" >/dev/null 2>&1; then
-            gh release upload "$TAG" "$TGZ" dist/host-ui.js --clobber
+            # Existing empty v0.1.3 (or any prior Release) keeps its notes.
+            gh release upload "$TAG" "$TGZ" "$HOST_UI" --clobber
           else
-            gh release create "$TAG" "$TGZ" dist/host-ui.js \
+            gh release create "$TAG" "$TGZ" "$HOST_UI" \
               --title "$TAG" \
               --generate-notes
           fi
+          echo "Release $TAG includes tarball compiled from startdownnotez404/monorepo@${MONO_SHA}"
