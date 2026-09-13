@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 /**
  * Rebuild dist/ from the sibling platform checkout (esbuild + ui-dev FlowMap).
+ * The host also writes dist/host-ui.js (slim widget chunk) when
+ * PLAYGROUND3_SDK_PACKAGE_ROOT points at this package.
  */
 import { spawn } from "node:child_process";
 import path from "node:path";

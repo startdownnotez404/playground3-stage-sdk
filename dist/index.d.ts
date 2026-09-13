@@ -13,3 +13,4 @@ export type { OrchestraGraphGroup, OrchestraGraphResponseShape, } from "./shared
 export { createOntologyToolHandler, createEmptyOntologyState, createOntologyCheckpointAdapter, buildOntologyPromptView, buildOntologyMcpTools, buildOntologyPlanesInjectionTemplate, ONTOLOGY_TOOL_NAMES, type OntologyState, } from "./shared/ontology";
 export { pg3DebugLog, pg3DebugStateBoard, pg3DebugBoardSummary, } from "./shared/playground3/debug/playground3DebugLog";
 export { FlowMap, BottomHandle, LeftHandle, RightHandle, TopHandle, type FlowTreeNode, type FlowMapEdge, type FlowMapNode, } from "./flowMap";
+export { Markdown, Modal, MuiModal } from "./host-ui";
