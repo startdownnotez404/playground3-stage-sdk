@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 /**
- * Rebuild dist/ from the sibling platform checkout (esbuild + ui-dev FlowMap).
- * The host also writes dist/host-ui.js (slim widget chunk) when
- * PLAYGROUND3_SDK_PACKAGE_ROOT points at this package.
+ * Optional local rebuild from a sibling platform checkout.
+ * CI (.github/workflows/publish.yml) does not run this file; it checks out
+ * startdownnotez404/monorepo and runs `npm run build:stage-sdk` instead.
+ * The host writes dist/host-ui.js when PLAYGROUND3_SDK_PACKAGE_ROOT points here.
  */
 import { spawn } from "node:child_process";
 import path from "node:path";
