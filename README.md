@@ -1,11 +1,15 @@
 # @startdownnotez404/playground3-stage-sdk
 
 Opaque Playground3 Stage SDK for author apps. Source lives on GitHub;
-install the published package from the public npmjs registry:
+install the published tarball from a **public GitHub Release** (not npmjs,
+and not a `github:` git dependency):
 
 ```bash
-npm install @startdownnotez404/playground3-stage-sdk
+npm install https://github.com/startdownnotez404/playground3-stage-sdk/releases/download/v0.1.3/startdownnotez404-playground3-stage-sdk-0.1.3.tgz
 ```
+
+The repo and release must be public so Author `npm i` can fetch the `.tgz`
+without a token.
 
 Mount, turn runner, and FlowMap come from the package root. Host ui-lib
 widgets (`MuiModal`, `Markdown`, `Modal`) are a separate slim entry:
@@ -19,8 +23,11 @@ Do not import `MuiModal`, `Markdown`, or `Modal` from `"."`. Those names
 may appear on the root TypeScript surface; the JavaScript values exist
 only on `./host-ui`.
 
-`/playground3/author` pins the same registry version inside WebContainer
-(`"@startdownnotez404/playground3-stage-sdk": "0.1.3"`).
+`/playground3/author` pins the Release URL inside WebContainer:
+
+```json
+"@startdownnotez404/playground3-stage-sdk": "https://github.com/startdownnotez404/playground3-stage-sdk/releases/download/v0.1.3/startdownnotez404-playground3-stage-sdk-0.1.3.tgz"
+```
 
 ## What this package is
 
@@ -48,8 +55,8 @@ treats those as externals.
 Types and JS are generated from `web/dev/dev-playground-authorSDK`. This
 package does not keep a second copy of `shared/` implementations.
 
-This repo commits `dist/` so npm and GitHub installs work without the platform
-checkout. To rebuild:
+This repo commits `dist/` so GitHub Release installs work without the
+platform checkout. To rebuild:
 
 ```bash
 npm run build
@@ -63,10 +70,11 @@ authored in this repo; do not substitute a stub for the host widget chunk.
 
 ## Publish
 
-GitHub Actions (`.github/workflows/publish.yml`) publishes on `v*` tags and
-via **Run workflow**. After the package exists on npmjs, add a Trusted
-Publisher (GitHub Actions → `startdownnotez404/playground3-stage-sdk` →
-`publish.yml` → allow `npm publish`). Later tags need no npm token.
+GitHub Actions (`.github/workflows/publish.yml`) runs on `v*` tags and via
+**Run workflow**. It `npm pack`s the package and creates a GitHub Release
+for that tag, attaching the `.tgz` and `dist/host-ui.js`. The job fails if
+`dist/host-ui.js` is missing so a tarball that cannot resolve `./host-ui`
+is never shipped.
 
-The first version still needs one Bypass-2FA granular token as repo secret
-`NPM_TOKEN`, or a local `npm publish --access public --otp=…`.
+This workflow does not `npm publish`. There is no npmjs registry, token,
+or Trusted Publisher setup.
