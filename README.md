@@ -7,12 +7,20 @@ install the published package from the public npmjs registry:
 npm install @startdownnotez404/playground3-stage-sdk
 ```
 
+Mount, turn runner, and FlowMap come from the package root. Host ui-lib
+widgets (`MuiModal`, `Markdown`, `Modal`) are a separate slim entry:
+
 ```ts
-import { mountPlayground3StageApp } from "@startdownnotez404/playground3-stage-sdk";
+import { mountPlayground3StageApp, FlowMap } from "@startdownnotez404/playground3-stage-sdk";
+import { MuiModal, Markdown } from "@startdownnotez404/playground3-stage-sdk/host-ui";
 ```
 
+Do not import `MuiModal`, `Markdown`, or `Modal` from `"."`. Those names
+may appear on the root TypeScript surface; the JavaScript values exist
+only on `./host-ui`.
+
 `/playground3/author` pins the same registry version inside WebContainer
-(`"@startdownnotez404/playground3-stage-sdk": "0.1.2"`).
+(`"@startdownnotez404/playground3-stage-sdk": "0.1.3"`).
 
 ## What this package is
 
@@ -20,9 +28,11 @@ Author apps own UI, tools/checkpoint, and the LLM/MCP graph. This package
 publishes:
 
 - `dist/index.js` — opaque esbuild bundle (mount, turn runner, whiteboard,
-  ontology, FlowMap) built from the host
-- `dist/index.d.ts` — author public API generated from the host
-  `authorPublicApi.ts` barrel
+  ontology, FlowMap) built from the host. This is `exports["."]` only.
+- `dist/host-ui.js` — slim ui-lib widget chunk (`Markdown`, `Modal`,
+  `MuiModal`). This is `exports["./host-ui"]` only.
+- `dist/index.d.ts` / `dist/host-ui.d.ts` — author public API generated
+  from the host `authorPublicApi.ts` barrel
 
 The host ChatDock still owns the live agent loop and imports
 `@/shared/playground3` locally. Do not import Amplify or platform executor
@@ -47,6 +57,9 @@ npm run build
 
 That shells out to `web/dev/dev-playground-authorSDK` plus `ui-lib/ui-dev`
 (FlowMap is compiled from ui-dev source, not from the published ui-lib barrel).
+The host build writes `dist/host-ui.js` (and `dist/host-ui.d.ts`) when
+`PLAYGROUND3_SDK_PACKAGE_ROOT` points at this package. Widgets are not
+authored in this repo; do not substitute a stub for the host widget chunk.
 
 ## Publish
 
