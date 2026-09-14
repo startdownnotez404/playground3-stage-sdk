@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 /**
  * Optional local rebuild from a sibling platform checkout.
- * CI (.github/workflows/publish.yml) does not run this file; it checks out
- * startdownnotez404/monorepo and runs `npm run build:stage-sdk` instead.
- * The host writes dist/host-ui.js when PLAYGROUND3_SDK_PACKAGE_ROOT points here.
+ * GitHub Releases are created by the monorepo Deploy Stage SDK Release
+ * workflow, not by CI in this repository. The host writes dist/host-ui.js
+ * when PLAYGROUND3_SDK_PACKAGE_ROOT points here.
  */
 import { spawn } from "node:child_process";
 import path from "node:path";
